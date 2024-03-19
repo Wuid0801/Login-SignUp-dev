@@ -32,16 +32,3 @@ export const formSchema = z.object({
         .refine((value) => phoneRegex.test(value), '010으로 시작하는 11자리 숫자를 입력해주세요'),
     Framework: z.string().min(2, { message: '역할을 선택해주세요.' }),
 });
-
-enum FrameworkEnum {
-    manager = 'manager',
-    generalUser = 'generalUser',
-}
-// TypeScript 인터페이스 정의
-export interface IFormInput {
-    Name: string;
-    Email: string;
-    Password: string;
-    CallNumber: string;
-    Framework: FrameworkEnum;
-}

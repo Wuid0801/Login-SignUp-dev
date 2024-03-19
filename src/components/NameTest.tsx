@@ -14,6 +14,7 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Button } from './ui/button';
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -50,6 +51,7 @@ export function Name() {
                         </FormItem>
                     )}
                 />
+                <Button type="submit">Submit</Button>
             </form>
         </Form>
     );
