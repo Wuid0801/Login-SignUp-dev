@@ -3,6 +3,7 @@ import {
     Card,
     CardContent,
     CardDescription,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
@@ -165,27 +166,35 @@ function Nav() {
                                     />
                                 )}
                             </motion.div>
-                            <Button
-                                type="submit"
+                            <CardFooter className="gap-4">
+                                <Button
+                                    type="submit"
+                                    onClick={() => {
+                                        form.trigger(['Name', 'Email', 'CallNumber', 'Framework']);
+                                        const phoneState = form.getFieldState('CallNumber');
+                                        const emailState = form.getFieldState('Email');
+                                        const usernameState = form.getFieldState('Name');
+                                        const roleState = form.getFieldState('Framework');
+                                        console.log('Phone State:', phoneState);
+                                        console.log('Email State:', emailState);
+                                        console.log('Username State:', usernameState);
+                                        console.log('Role State:', roleState);
+                                        if (!phoneState.isDirty || phoneState.invalid) return;
+                                        if (!emailState.isDirty || emailState.invalid) return;
+                                        if (!usernameState.isDirty || usernameState.invalid) return;
+                                        if (!roleState.isDirty || roleState.invalid) return;
+                                        setisPasswordStep(true);
+                                    }}
+                                >
+                                    다음 단계로
+                                </Button>
+                                {isPasswordStep && <Button type="submit"
                                 onClick={() => {
-                                    form.trigger(['Name', 'Email', 'CallNumber', 'Framework']);
-                                    const phoneState = form.getFieldState('CallNumber');
-                                    const emailState = form.getFieldState('Email');
-                                    const usernameState = form.getFieldState('Name');
-                                    const roleState = form.getFieldState('Framework');
-                                    console.log('Phone State:', phoneState);
-                                    console.log('Email State:', emailState);
-                                    console.log('Username State:', usernameState);
-                                    console.log('Role State:', roleState);
-                                    if (!phoneState.isDirty || phoneState.invalid) return;
-                                    if (!emailState.isDirty || emailState.invalid) return;
-                                    if (!usernameState.isDirty || usernameState.invalid) return;
-                                    if (!roleState.isDirty || roleState.invalid) return;
-                                    setisPasswordStep(true);
+                                    setisPasswordStep(false);
+                                    form.setValue('Password', '');
                                 }}
-                            >
-                                다음 단계로
-                            </Button>
+                                >이전 단계로</Button>}
+                            </CardFooter>
                         </form>
                     </Form>
                 </CardContent>
