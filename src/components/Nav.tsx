@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { z } from 'zod';
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -18,8 +18,11 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import {  useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { formSchema } from './auth';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 enum FrameworkEnum {
     manager = 'manager',
     generalUser = 'generalUser',
@@ -45,6 +48,16 @@ function Nav() {
         console.log(data);
         setisPasswordStep(true);
     };
+    const form = useForm<IFormInput>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            Email: '',
+            Name: '',
+            Password: '',
+            CallNumber: 0,
+            Framework: undefined,
+        },
+    });
 
     return (
         <>
