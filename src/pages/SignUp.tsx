@@ -1,34 +1,20 @@
 import { Button } from '@/components/ui/button';
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+    CardBox
 } from '@/components/ui/card';
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+    FormBox
 } from '@/components/ui/form';
 
 // import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+    SelectBox
 } from '@/components/ui/select';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { formSchema } from '../components/auth';
+import { formSchema } from '../validate/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -59,13 +45,13 @@ function SignUp() {
 
     return (
         <div className='grid place-items-center py-8'>
-            <Card className="w-[350px] min-h-[500px] z-1">
-                <CardHeader>
-                    <CardTitle>계정을 생성합니다</CardTitle>
-                    <CardDescription>필수 정보를 입력해볼게요</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Form {...form}>
+            <CardBox.Card className="w-[350px] min-h-[500px] z-1">
+                <CardBox.CardHeader>
+                    <CardBox.CardTitle>계정을 생성합니다</CardBox.CardTitle>
+                    <CardBox.CardDescription>필수 정보를 입력해볼게요</CardBox.CardDescription>
+                </CardBox.CardHeader>
+                <CardBox.CardContent>
+                    <FormBox.Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                             <motion.div
                                 className="grid w-full items-center gap-4"
@@ -75,99 +61,99 @@ function SignUp() {
                             >
                                 {!isPasswordStep ? (
                                     <div className="grid w-full items-center gap-4">
-                                        <FormField
+                                        <FormBox.FormField
                                             control={form.control}
                                             name="Name"
                                             render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>이름</FormLabel>
-                                                    <FormControl>
+                                                <FormBox.FormItem>
+                                                    <FormBox.FormLabel>이름</FormBox.FormLabel>
+                                                    <FormBox.FormControl>
                                                         <Input placeholder="홍길동" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
+                                                    </FormBox.FormControl>
+                                                    <FormBox.FormMessage />
+                                                </FormBox.FormItem>
                                             )}
                                         />
 
-                                        <FormField
+                                        <FormBox.FormField
                                             control={form.control}
                                             name="Email"
                                             render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>이메일</FormLabel>
-                                                    <FormControl>
+                                                <FormBox.FormItem>
+                                                    <FormBox.FormLabel>이메일</FormBox.FormLabel>
+                                                    <FormBox.FormControl>
                                                         <Input
                                                             placeholder="hello@sparta-devcamp.com"
                                                             {...field}
                                                         />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
+                                                    </FormBox.FormControl>
+                                                    <FormBox.FormMessage />
+                                                </FormBox.FormItem>
                                             )}
                                         />
-                                        <FormField
+                                        <FormBox.FormField
                                             control={form.control}
                                             name="CallNumber"
                                             render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>연락처</FormLabel>
-                                                    <FormControl>
+                                                <FormBox.FormItem>
+                                                    <FormBox.FormLabel>연락처</FormBox.FormLabel>
+                                                    <FormBox.FormControl>
                                                         <Input
                                                             placeholder="01000000000"
                                                             {...field}
                                                         />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
+                                                    </FormBox.FormControl>
+                                                    <FormBox.FormMessage />
+                                                </FormBox.FormItem>
                                             )}
                                         />
 
-                                        <FormField
+                                        <FormBox.FormField
                                             control={form.control}
                                             name="Framework"
                                             render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>역할</FormLabel>
-                                                    <Select
+                                                <FormBox.FormItem>
+                                                    <FormBox.FormLabel>역할</FormBox.FormLabel>
+                                                    <SelectBox.Select
                                                         onValueChange={field.onChange}
                                                         defaultValue={field.value}
                                                     >
-                                                        <FormControl>
-                                                            <SelectTrigger>
-                                                                <SelectValue placeholder="역할을 선택해주세요" />
-                                                            </SelectTrigger>
-                                                        </FormControl>
-                                                        <SelectContent>
-                                                            <SelectItem value="admin">
+                                                        <FormBox.FormControl>
+                                                            <SelectBox.SelectTrigger>
+                                                                <SelectBox.SelectValue placeholder="역할을 선택해주세요" />
+                                                            </SelectBox.SelectTrigger>
+                                                        </FormBox.FormControl>
+                                                        <SelectBox.SelectContent>
+                                                            <SelectBox.SelectItem value="admin">
                                                                 관리자
-                                                            </SelectItem>
-                                                            <SelectItem value="user">
+                                                            </SelectBox.SelectItem>
+                                                            <SelectBox.SelectItem value="user">
                                                                 일반사용자
-                                                            </SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                    <FormMessage />
-                                                </FormItem>
+                                                            </SelectBox.SelectItem>
+                                                        </SelectBox.SelectContent>
+                                                    </SelectBox.Select>
+                                                    <FormBox.FormMessage />
+                                                </FormBox.FormItem>
                                             )}
                                         />
                                     </div>
                                 ) : (
-                                    <FormField
+                                    <FormBox.FormField
                                         control={form.control}
                                         name="Password"
                                         render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>비밀번호</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="비밀번호 입력" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
+                                            <FormBox.FormItem>
+                                                <FormBox.FormLabel>비밀번호</FormBox.FormLabel>
+                                                <FormBox.FormControl>
+                                                    <Input placeholder="비밀번호 입력" type={"password"} {...field} />
+                                                </FormBox.FormControl>
+                                                <FormBox.FormMessage />
+                                            </FormBox.FormItem>
                                         )}
                                     />
                                 )}
                             </motion.div>
-                            <CardFooter className="gap-4">
+                            <CardBox.CardFooter className="gap-4">
                                 <Button
                                     type="submit"
                                     onClick={() => {
@@ -195,11 +181,11 @@ function SignUp() {
                                     form.setValue('Password', '');
                                 }}
                                 >이전 단계로</Button>}
-                            </CardFooter>
+                            </CardBox.CardFooter>
                         </form>
-                    </Form>
-                </CardContent>
-            </Card>
+                    </FormBox.Form>
+                </CardBox.CardContent>
+            </CardBox.Card>
         </div>
     );
 }

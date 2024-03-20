@@ -164,7 +164,7 @@ const FormMessage = React.forwardRef<
 })
 FormMessage.displayName = "FormMessage"
 
-export {
+export const FormBox = {
   useFormField,
   Form,
   FormItem,
