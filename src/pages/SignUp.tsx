@@ -15,7 +15,8 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form';
-import { cn } from '@/lib/utils';
+
+// import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import {
     Select,
@@ -27,25 +28,25 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { formSchema } from './auth';
+import { formSchema } from '../components/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-type LoginInput = z.infer<typeof formSchema>;
-function Nav() {
+type SignupInput = z.infer<typeof formSchema>;
+function SignUp() {
     const [isPasswordStep, setisPasswordStep] = useState(false);
     // const {
     //     control,
     //     register,
     //     handleSubmit,
     //     formState: { errors },
-    // } = useForm<LoginInput>();
+    // } = useForm<SignupInput>();
 
-    const onSubmit: SubmitHandler<LoginInput> = (values) => {
+    const onSubmit: SubmitHandler<SignupInput> = (values) => {
         console.log('data');
         console.log(values);
     };
-    const form = useForm<LoginInput>({
+    const form = useForm<SignupInput>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             Email: '',
@@ -57,8 +58,8 @@ function Nav() {
     });
 
     return (
-        <>
-            <Card className="w-[350px] min-h-[500px]">
+        <div className='grid place-items-center py-8'>
+            <Card className="w-[350px] min-h-[500px] z-1">
                 <CardHeader>
                     <CardTitle>계정을 생성합니다</CardTitle>
                     <CardDescription>필수 정보를 입력해볼게요</CardDescription>
@@ -199,8 +200,8 @@ function Nav() {
                     </Form>
                 </CardContent>
             </Card>
-        </>
+        </div>
     );
 }
 
-export default Nav;
+export default SignUp;
