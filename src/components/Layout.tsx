@@ -6,7 +6,9 @@ const Layout: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <div className="grid place-items-center py-8">
+                <Outlet />
+            </div>
         </>
     );
 };
