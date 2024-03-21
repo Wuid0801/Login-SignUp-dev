@@ -1,3 +1,12 @@
 {
-    "users": []
+  "users": [
+    {
+      "id": "52c1",
+      "Name": "강혜성",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!",
+      "CallNumber": "01058511751",
+      "Framework": "admin"
+    }
+  ]
 }
