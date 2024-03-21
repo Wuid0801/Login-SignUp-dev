@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": "f588",
+      "Name": "강혜성",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!",
+      "CallNumber": "01058511751",
+      "Framework": "admin"
+    },
+    {
+      "id": "742b",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!"
+    },
+    {
+      "id": "8d4c",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!"
+    },
+    {
+      "id": "2c1e",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!"
+    },
+    {
+      "id": "f45b",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!"
+    },
+    {
+      "id": "1149",
+      "Email": "pig10326@naver.com",
+      "Password": "pig10326!"
+    }
+  ]
+}

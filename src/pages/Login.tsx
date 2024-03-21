@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormBox } from '@/components/ui/form';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 type LoginInput = z.infer<typeof LoginSchema>;
 function Login() {
@@ -18,9 +19,13 @@ function Login() {
         },
     });
 
-    const onSubmit: SubmitHandler<LoginInput> = (values) => {
-        console.log('data');
-        console.log(values);
+    const onSubmit: SubmitHandler<LoginInput> = async (values) => {
+        try {
+            const response = await axios.post('http://localhost:3001/users', values);
+            console.log('로그인 유저 데이터 : ',response.data);
+        } catch (error) {
+            console.error('Error : ', error);
+        }
     };
     return (
         <div>

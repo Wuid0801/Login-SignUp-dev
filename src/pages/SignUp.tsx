@@ -12,9 +12,12 @@ import { formSchema } from '../validate/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import AlertUi from '@/components/AlertUi';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 type SignupInput = z.infer<typeof formSchema>;
 function SignUp() {
+    const navigate = useNavigate();
     const [isAlertVisible, setIsAlertVisible] = useState(false);
     const [alertContent, setAlertContent] = useState<JSX.Element>(<div></div>);
     const [isPasswordStep, setisPasswordStep] = useState(false);
@@ -25,7 +28,7 @@ function SignUp() {
     //     formState: { errors },
     // } = useForm<SignupInput>();
 
-    const onSubmit: SubmitHandler<SignupInput> = (values) => {
+    const onSubmit: SubmitHandler<SignupInput> = async (values) => {
         const alertContent = (
             <div>
                 <p>Name: {values.Name}</p>
@@ -39,8 +42,15 @@ function SignUp() {
         setIsAlertVisible(true);
         setTimeout(() => {
             setIsAlertVisible(false);
-        }, 1000); 
+        }, 1000);
+        
         console.log(values);
+        try {
+            await axios.post('http://localhost:3001/users', values);
+            navigate('/login');
+        } catch (error) {
+            console.error('Error : ', error);
+        }
     };
     const form = useForm<SignupInput>({
         resolver: zodResolver(formSchema),
