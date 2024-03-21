@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormBox } from '@/components/ui/form';
+import { Link } from 'react-router-dom';
 
 type LoginInput = z.infer<typeof LoginSchema>;
 function Login() {
@@ -63,9 +64,22 @@ function Login() {
                                     </FormBox.FormItem>
                                 )}
                             />
-                            <Button type="submit">로그인하기</Button>
+                            <Button type="submit" className="w-full">
+                                로그인하기
+                            </Button>
                         </form>
                     </FormBox.Form>
+                    <div>
+                        <div className="ma-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
+                            or
+                        </div>
+                        <p className="text-center text-sm text-gray-600 mt-2">
+                            아이디가 없나요? &nbsp;
+                            <Link to="/signup" className="text-blue-500 hover:underline">
+                                회원가입
+                            </Link>
+                        </p>
+                    </div>
                 </CardBox.CardContent>
             </CardBox.Card>
         </div>
