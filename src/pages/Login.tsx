@@ -8,10 +8,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormBox } from '@/components/ui/form';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import AlertUi from '@/components/AlertUi';
+import { useState } from 'react';
 
 type LoginInput = z.infer<typeof LoginSchema>;
 
 function Login() {
+    const [isAlertVisible, setIsAlertVisible] = useState(false);
     const form = useForm<LoginInput>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -23,13 +26,18 @@ function Login() {
     const onSubmit: SubmitHandler<LoginInput> = async (values) => {
         try {
             const response = await axios.post('http://localhost:3001/users', values);
-            console.log('로그인 유저 데이터 : ',response.data);
+            setIsAlertVisible(true);
+            setTimeout(() => {
+                setIsAlertVisible(false);
+            }, 1000);
+            console.log('로그인 유저 데이터 : ', response.data);
         } catch (error) {
             console.error('Error : ', error);
         }
     };
     return (
         <div>
+            {isAlertVisible && <AlertUi title="로그인 완료!" description='환영합니다!' />}
             <CardBox.Card className="w-[350px] min-h-[500px] z-1">
                 <CardBox.CardHeader>
                     <CardBox.CardTitle>로그인</CardBox.CardTitle>

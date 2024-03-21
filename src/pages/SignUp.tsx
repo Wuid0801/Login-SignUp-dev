@@ -19,7 +19,7 @@ type SignupInput = z.infer<typeof formSchema>;
 function SignUp() {
     const navigate = useNavigate();
     const [isAlertVisible, setIsAlertVisible] = useState(false);
-    const [alertContent, setAlertContent] = useState<JSX.Element>(<div></div>);
+    const [alertContent, setAlertContent] = useState('');
     const [isPasswordStep, setisPasswordStep] = useState(false);
     // const {
     //     control,
@@ -29,25 +29,23 @@ function SignUp() {
     // } = useForm<SignupInput>();
 
     const onSubmit: SubmitHandler<SignupInput> = async (values) => {
-        const alertContent = (
-            <div>
-                <p>Name: {values.Name}</p>
-                <p>Email: {values.Email}</p>
-                <p>Framework: {values.Framework}</p>
-                <p>CallNumber: {values.CallNumber}</p>
-                <p>Password: {values.Password}</p>
-            </div>
-        );
-        setAlertContent(alertContent);
-        setIsAlertVisible(true);
-        setTimeout(() => {
-            setIsAlertVisible(false);
-        }, 1000);
-        
+        const alertContent = `
+        Name: ${values.Name}\n
+        Email: ${values.Email}\n
+        Framework: ${values.Framework}\n
+        CallNumber: ${values.CallNumber}\n
+        Password: ${values.Password}
+    `;
+
         console.log(values);
         try {
             await axios.post('http://localhost:3001/users', values);
-            navigate('/login');
+            setAlertContent(alertContent);
+            setIsAlertVisible(true);
+            setTimeout(() => {
+                setIsAlertVisible(false);
+                navigate('/login');
+            }, 1000);
         } catch (error) {
             console.error('Error : ', error);
         }
