@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 type LoginInput = z.infer<typeof LoginSchema>;
+
 function Login() {
     const form = useForm<LoginInput>({
         resolver: zodResolver(LoginSchema),
