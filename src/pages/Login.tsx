@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormBox } from '@/components/ui/form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AlertUi from '@/components/AlertUi';
 import { useState } from 'react';
@@ -14,6 +14,8 @@ import { useState } from 'react';
 type LoginInput = z.infer<typeof LoginSchema>;
 
 function Login() {
+    const navigate = useNavigate();
+
     const [isAlertVisible, setIsAlertVisible] = useState(false);
     const form = useForm<LoginInput>({
         resolver: zodResolver(LoginSchema),
@@ -29,6 +31,8 @@ function Login() {
             setIsAlertVisible(true);
             setTimeout(() => {
                 setIsAlertVisible(false);
+                navigate('/test');
+                
             }, 1000);
             console.log('로그인 유저 데이터 : ', response.data);
         } catch (error) {
